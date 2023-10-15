@@ -1,36 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './routes/shared-layout/shared-layout';
 import Root from './routes/root/root.route';
 import Error from './routes/error/error.route';
+import { useDispatch } from 'react-redux';
+import { fetchNews } from './features/newsSlice';
+import NewsAndTopics from './routes/topics/news-and-topics.route';
+import { fetchLatestNews } from './features/latestNewsSlice';
 
 function App() {
-    const url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=54780f5aab7c4df9a8ba208fbbc0b17d';
+    const dispatch = useDispatch();
 
-    const [news, setNews] = useState('');
-
-    const generateAdvice = async () => {
-        try {
-            await fetch(url).then(res => {
-                return res.json();
-            }).then((data) => {
-                console.log(data.articles[0].content);
-                setNews(data.articles[0].content?.split('[')[0])
-            });
-        }
-        catch(err) {
-            console.log(err);
-        }
-    }
-
-    generateAdvice();
+    useEffect(() => {
+        dispatch(fetchNews());
+        dispatch(fetchLatestNews());
+    }, [dispatch]);
 
     return (
         <Routes>
             <Route path='/' element={<SharedLayout />}>
                 <Route index element={<Root />} />
 
-                {/* <Route path='shop/*' element={<Shop />} /> */}
+                <Route path='news/*' element={<NewsAndTopics />} />
 
                 {/* <Route path='accounts' element={
                     <ProtectedRouteOnLogin>
