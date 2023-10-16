@@ -11,14 +11,20 @@ function NewsBoxAccountPage({ item }) {
 
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
-            {...item, content: item.content?.split('[')[0]},
+            {
+                ...item,
+                ...(item.content ? { content: item.content.split('[')[0] } : {})
+            },
             currentUser?.uid
         );
     }
 
     const handleRemoveArticleFromBookmarks = async () => {
         await removeArticleFromBookmarks(
-            {...item, content: item.content?.split('[')[0]},
+            {
+                ...item,
+                ...(item.content ? { content: item.content.split('[')[0] } : {})
+            },
             currentUser?.uid
         )
     } 

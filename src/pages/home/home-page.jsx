@@ -10,7 +10,9 @@ function HomePage() {
         <div className='home-page-container'>
             <div className="top-news-container">
                 <h1 className='title'>Top News</h1>
-                {news.map((item, index) => {
+                {news
+                    .filter(item => item.urlToImage)
+                    .map((item, index) => {
                     return (
                         <NewsBox 
                             key={index} 

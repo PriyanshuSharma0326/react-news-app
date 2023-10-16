@@ -6,7 +6,6 @@ import Error from './routes/error/error.route';
 import { useDispatch } from 'react-redux';
 import { fetchNews } from './features/newsSlice';
 import NewsAndTopics from './routes/topics/news-and-topics.route';
-import { fetchLatestNews } from './features/latestNewsSlice';
 import { UserContext } from './context/user-context';
 import Auth from './routes/auth/authentication.route';
 import SignIn from './pages/signin/signin';
@@ -20,7 +19,6 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchNews());
-        dispatch(fetchLatestNews());
     }, [dispatch]);
 
     const ProtectedRouteNoLogin = ({ children }) => {

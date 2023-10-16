@@ -11,14 +11,20 @@ function NewsBox({ item }) {
 
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
-            {...item, content: item.content?.split('[')[0]},
+            {
+                ...item,
+                ...(item.content ? { content: item.content.split('[')[0] } : {})
+            },
             currentUser?.uid
         );
     }
 
     const handleRemoveArticleFromBookmarks = async () => {
         await removeArticleFromBookmarks(
-            {...item, content: item.content?.split('[')[0]},
+            {
+                ...item,
+                ...(item.content ? { content: item.content.split('[')[0] } : {})
+            },
             currentUser?.uid
         )
     } 
@@ -34,7 +40,7 @@ function NewsBox({ item }) {
                 </a>
 
                 <h2>{item.description}</h2>
-                <p>{item.content?.split('[')[0]}</p>
+                {item.content && <p>{item.content?.split('[')[0]}</p>}
                 
                 <div className="news-meta">
                     <ul>

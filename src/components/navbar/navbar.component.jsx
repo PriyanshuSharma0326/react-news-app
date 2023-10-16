@@ -26,9 +26,7 @@ function Navbar() {
         const topicsBar = document.getElementById('topics-bar');
 
         currentUser && topicsBar.childNodes.forEach((node, index) => {
-            if (index > 0) {
-                dispatch(fetchCateredNews(node.innerText));
-            }
+            dispatch(fetchCateredNews(node.innerText));
         });
     }, [dispatch, currentUser]);
 
@@ -66,14 +64,13 @@ function Navbar() {
             </nav>
 
             {currentUser && <div className="topics-bar" id='topics-bar'>
-                <span className={`topic${location.pathname === '/news' ? ' active' : ''}`} onClick={goToNewsPage}>Latest</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Movies' ? ' active' : ''}`} onClick={() => goToCategoryPage('Movies')}>Movies</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Cricket' ? ' active' : ''}`} onClick={() => goToCategoryPage('Cricket')}>Cricket</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Football' ? ' active' : ''}`} onClick={() => goToCategoryPage('Football')}>Football</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Health' ? ' active' : ''}`} onClick={() => goToCategoryPage('Health')}>Health</span>
+                <span className={`topic${location.pathname === '/news' ? ' active' : ''}`} onClick={goToNewsPage}>General</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Business' ? ' active' : ''}`} onClick={() => goToCategoryPage('Business')}>Business</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Entertainment' ? ' active' : ''}`} onClick={() => goToCategoryPage('Entertainment')}>Entertainment</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Health' ? ' active' : ''}`} onClick={() => goToCategoryPage('Health')}>Health</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Science' ? ' active' : ''}`} onClick={() => goToCategoryPage('Science')}>Science</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''}`} onClick={() => goToCategoryPage('Sports')}>Sports</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Elections' ? ' active' : ''}`} onClick={() => goToCategoryPage('Elections')}>Elections</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Technology' ? ' active' : ''}`} onClick={() => goToCategoryPage('Technology')}>Technology</span>
             </div>}
         </div>
     )
