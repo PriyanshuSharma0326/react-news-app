@@ -2,12 +2,12 @@ import React from 'react';
 import './authentication.styles.scss';
 import { Outlet } from 'react-router-dom';
 
-function AuthPage() {
+function Auth() {
     return (
-        <div className='auth-page-container'>
+        <div className='auth-container'>
             <Outlet />
         </div>
     );
 }
 
-export default AuthPage;
+export default Auth;

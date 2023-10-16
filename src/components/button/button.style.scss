@@ -1,0 +1,66 @@
+.button-container {
+    width: auto;
+    letter-spacing: 0.5px;
+    padding: 0.75rem 0;
+    font-size: 0.85rem;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: 1px solid black;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+
+    &.blue {
+        border: none;
+        background-color: #4285f4;
+        color: white;
+
+        &:hover {
+            background-color: #357ae8;
+            border: none;
+        }
+    }
+
+    &.inverted {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+
+    &.simple {
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0;
+        background-color: white;
+        color: var(--dark);
+        border: none;
+        border-radius: 0;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &.icon {
+        border-radius: 50%;
+        width: 2.75rem;
+        height: 2.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

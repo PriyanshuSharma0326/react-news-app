@@ -41,39 +41,25 @@
             li {
                 list-style: none;
                 cursor: pointer;
-    
-                .cart-icon-container {
-                    position: relative;
-                    cursor: pointer;
-    
-                    .icon {
-                        display: block;
-                        font-size: 1.85rem;
-                        color: white;
+
+                .nav-link {
+                    display: flex;
+                    gap: 0.75rem;
+                    line-height: 0;
+
+                    img {
+                        width: 2rem;
+                        height: auto;
+                        border-radius: 50%;
                     }
-    
-                    span {
-                        position: absolute;
-                        top: 35%;
-                        left: 55%;
-                        transform: translate(-50%, -50%);
-                        font-weight: 700;
-                        color: var(--dark);
-                        font-size: 0.75rem;
-                        user-select: none;
+
+                    &.user-link {
+                        padding: 0.25rem;
+                        padding-right: 0.75rem;
+                        border-radius: 1.25rem;
+                        background-color: var(--grey-3);
                     }
                 }
-            }
-        }
-    
-        .more-icon-container {
-            display: none;
-            cursor: pointer;
-    
-            .icon {
-                display: block;
-                font-size: 1.85rem;
-                color: white;
             }
         }
     }
@@ -82,7 +68,6 @@
         padding: 0.25rem 5rem;
         padding-bottom: 0;
         display: flex;
-        flex-wrap: wrap;
         gap: 1rem;
         background-color: white;
         border-bottom: 1px solid var(--grey-2);
@@ -104,6 +89,110 @@
                 cursor: pointer;
                 color: var(--red);
                 border-bottom: 3px solid var(--red);
+            }
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .topics-bar {
+            padding: 0.25rem 5rem;
+        }
+    }
+    
+    @media (max-width: 1024px) {
+        .navbar {
+            padding: 1rem 3rem;
+        
+            .nav-logo {
+                width: 2.5rem;
+            }
+        
+            .nav-title {
+                font-size: 1.4rem;
+            }
+        
+            .nav-links-container {
+                li {
+                    .nav-link {
+                        img {
+                            width: 2rem;
+                            height: auto;
+                            border-radius: 50%;
+                        }
+
+                        &.user-link {
+                            padding: 0.25rem;
+                            padding-right: 0.75rem;
+                            border-radius: 1.25rem;
+                            background-color: var(--grey-3);
+                        }
+                    }
+                }
+            }
+        }
+
+        .topics-bar {
+            padding: 0.25rem 3rem;
+
+            .topic {
+                padding: 0.5rem 0.65rem;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .topics-bar {
+            padding: 0.25rem 3rem;
+
+            .topic {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+    @media (max-width: 426px) {
+        .navbar {
+            padding: 1rem;
+        
+            .nav-logo {
+                width: 2.25rem;
+            }
+        
+            .nav-title {
+                margin-left: 0.75rem;
+                font-size: 1.25rem;
+            }
+        
+            .nav-links-container {
+                li {
+                    display: none;
+
+                    &:last-of-type {
+                        display: flex;
+                    }
+
+                    .nav-link {
+                        &.user-link {
+                            padding: 0.25rem;
+
+                            span {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .topics-bar {
+            padding: 1rem;
+            overflow: scroll;
+
+            .topic {
+                padding: 0.25rem;
+                font-size: 0.75rem;
             }
         }
     }

@@ -1,15 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './navbar.style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchCateredNews } from '../../features/cateredNewsSlice';
-// import { UserContext } from '../../context/user-context';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons'
-// import { CartContext } from '../../context/cart-context';
-// import CartDropdown from '../cart-dropdown/cart-dropdown.component';
-// import { NavbarContext } from '../../context/navbar-context';
-// import NavigationMenu from '../navigation-menu/navigation-menu.component';
+import { UserContext } from '../../context/user-context';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -18,14 +12,25 @@ function Navbar() {
 
     const location = useLocation();
 
+    const { currentUser, userDoc } = useContext(UserContext);
+
     const goToNewsPage = () => {
         navigate('/news');
     }
 
-    const dispatchNewsData = (searchString) => {
+    const goToCategoryPage = (searchString) => {
         navigate(`/news/${searchString}`);
-        dispatch(fetchCateredNews(searchString));
     }
+
+    useEffect(() => {
+        const topicsBar = document.getElementById('topics-bar');
+
+        currentUser && topicsBar.childNodes.forEach((node, index) => {
+            if (index > 0) {
+                dispatch(fetchCateredNews(node.innerText));
+            }
+        });
+    }, [dispatch, currentUser]);
 
     return (
         <div className='navbar-container'>
@@ -38,32 +43,38 @@ function Navbar() {
                     <h1 className='nav-title'>ReactReporter</h1>
                 </Link>
 
-                <ul className="nav-links-container">
+                {currentUser && <ul className="nav-links-container">
                     <li>
                         <Link 
-                            to='/news' 
+                            to='/account/bookmarks' 
                             className='nav-link' 
                         >
-                            Latest News
+                            Bookmarks
                         </Link>
                     </li>
-                </ul>
 
-                {/* <div className="more-icon-container" onClick={displayMenu}>
-                    <FontAwesomeIcon className='icon' icon={faBars} />
-                </div> */}
+                    <li>
+                        <Link 
+                            to='/account' 
+                            className='nav-link user-link' 
+                        >
+                            <img src={userDoc?.photoURL} alt={userDoc?.displayName} />
+                            <span>{userDoc?.username}</span>
+                        </Link>
+                    </li>
+                </ul>}
             </nav>
 
-            <div className="topics-bar">
+            {currentUser && <div className="topics-bar" id='topics-bar'>
                 <span className={`topic${location.pathname === '/news' ? ' active' : ''}`} onClick={goToNewsPage}>Latest</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Movies' ? ' active' : ''}`} onClick={() => dispatchNewsData('Movies')}>Movies</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Cricket' ? ' active' : ''}`} onClick={() => dispatchNewsData('Cricket')}>Cricket</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Health' ? ' active' : ''}`} onClick={() => dispatchNewsData('Health')}>Health</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Business' ? ' active' : ''}`} onClick={() => dispatchNewsData('Business')}>Business</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Education' ? ' active' : ''}`} onClick={() => dispatchNewsData('Education')}>Education</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''}`} onClick={() => dispatchNewsData('Sports')}>Sports</span>
-                <span className={`topic${location.pathname.split('/news/')[1] === 'Elections' ? ' active' : ''}`} onClick={() => dispatchNewsData('Elections')}>Elections</span>
-            </div>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Movies' ? ' active' : ''}`} onClick={() => goToCategoryPage('Movies')}>Movies</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Cricket' ? ' active' : ''}`} onClick={() => goToCategoryPage('Cricket')}>Cricket</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Football' ? ' active' : ''}`} onClick={() => goToCategoryPage('Football')}>Football</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Health' ? ' active' : ''}`} onClick={() => goToCategoryPage('Health')}>Health</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Business' ? ' active' : ''}`} onClick={() => goToCategoryPage('Business')}>Business</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Sports' ? ' active' : ''}`} onClick={() => goToCategoryPage('Sports')}>Sports</span>
+                <span className={`topic${location.pathname.split('/news/')[1] === 'Elections' ? ' active' : ''}`} onClick={() => goToCategoryPage('Elections')}>Elections</span>
+            </div>}
         </div>
     )
 }

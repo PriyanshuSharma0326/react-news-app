@@ -9,11 +9,13 @@ function TopicBasedNews() {
 
     const location = useLocation();
 
+    const newsContent = cateredNews[location.pathname.split('/news/')[1]];
+
     return (
         <div className='topic-based-news-container'>
             <div className="topic-news-container">
             <h1 className='title'>News On {location.pathname.split('/news/')[1]}</h1>
-                {cateredNews
+                {newsContent
                     .filter(item => item.urlToImage)
                     .map((item, index) => (
                         <NewsBox 

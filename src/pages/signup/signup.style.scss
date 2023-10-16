@@ -1,0 +1,142 @@
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 48rem;
+    margin-top: 11.5rem;
+    padding-bottom: 4rem;
+
+    .sign-up-form-container {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--grey);
+        padding: 1.5rem;
+
+        h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 1.5rem;
+            row-gap: 3.5rem;
+            align-items: center;
+
+            .image-input-group{
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                .image-input-container {
+                    display: flex;
+                    align-items: center;
+            
+                    label {
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+            
+                        .MuiSvgIcon-root {
+                            color: var(--green-1);
+                        }
+            
+                        > span {
+                            margin-left: 1rem;
+                            font-size: 1rem;
+                            font-weight: 500;
+                            color: #6B728E;
+                        }
+                    }
+            
+                    .image-input {
+                        display: none;
+                    }
+            
+                    > span {
+                        margin-left: 0.8rem;
+                        font-size: 0.85rem;
+                        color: var(--red);
+                    }
+                }
+
+                .error {
+                    position: absolute;
+                    left: 5px;
+                    bottom: -1.5rem;
+                    font-size: 0.85rem;
+                    color: var(--red);
+                }
+            }
+        }
+
+        button {
+            margin: 0 auto;
+            margin-top: 3rem;
+            height: fit-content;
+            width: 50%;
+        }
+
+        .loader {
+            margin: 0 auto;
+            margin-top: 2.5rem;
+            padding: 0.5rem;
+        }
+    }
+
+    .go-to-login {
+        border: 1px solid var(--grey);
+        padding: 1rem 1.5rem;
+        text-align: center;
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            
+            span {
+                font-weight: 500;
+                color: #4285f4;
+                text-decoration: none;
+
+                &:hover {
+                    color: #357ae8;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1440px) {
+        margin-top: 6.5rem;
+    }
+
+    @media (max-width: 1024px) {
+        width: 40rem;
+        margin-top: 19rem;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 0;
+    }
+
+    @media (max-width: 426px) {
+        margin-top: 32rem;
+        width: 90%;
+
+        .sign-up-form-container {
+            form {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 1.5rem;
+                row-gap: 3.5rem;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

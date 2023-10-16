@@ -7,7 +7,7 @@ const initialStateValue = {
     error: null,
 };
 
-const fetchLatestNews = createAsyncThunk('latestNews/fetchLatestNews', async () => {
+const fetchLatestNews = createAsyncThunk('news/fetchLatestNews', async () => {
     try {
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`);
         return response.data.articles;

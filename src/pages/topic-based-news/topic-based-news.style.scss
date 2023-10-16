@@ -1,6 +1,7 @@
 .topic-based-news-container {
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 2rem;
 
     .topic-news-container {
         margin-top: 10.5rem;
@@ -11,6 +12,29 @@
 
         .title {
             font-size: 2.25rem;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        width: 95%;
+
+        .topic-news-container {
+            margin-top: 9.5rem;
+            gap: 1.5rem;
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .topic-news-container {
+            gap: 1.75rem;
+
+            .title {
+                font-size: 1.75rem;
+            }
         }
     }
 }

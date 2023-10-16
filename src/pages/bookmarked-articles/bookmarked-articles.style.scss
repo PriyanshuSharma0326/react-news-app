@@ -1,9 +1,9 @@
-.home-page-container {
+.bookmarked-articles-page-container {
     width: 90%;
     margin: 0 auto;
     padding-bottom: 2rem;
 
-    .top-news-container {
+    .bookmarked-articles-container {
         margin-top: 10.5rem;
         width: 100%;
         display: flex;
@@ -18,7 +18,7 @@
     @media (max-width: 1024px) {
         width: 95%;
 
-        .top-news-container {
+        .bookmarked-articles-container {
             margin-top: 9.5rem;
             gap: 1.5rem;
 
@@ -29,7 +29,7 @@
     }
 
     @media (max-width: 768px) {
-        .top-news-container {
+        .bookmarked-articles-container {
             gap: 1.75rem;
 
             .title {

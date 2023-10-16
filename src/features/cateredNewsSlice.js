@@ -2,15 +2,15 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialStateValue = {
-    news: [],
+    news: {},
     loading: 'idle',
     error: null,
 };
 
-const fetchCateredNews = createAsyncThunk('cateredNews/fetchCateredNews', async (searchString) => {
+const fetchCateredNews = createAsyncThunk('news/fetchCateredNews', async (searchString) => {
     try {
         const response = await axios.get(`https://newsapi.org/v2/everything?q=${searchString}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`);
-        return response.data.articles.slice(0, 50);
+        return { [searchString]: response.data.articles.slice(0, 60) };
     } catch (error) {
         throw error;
     }
@@ -27,7 +27,7 @@ const cateredNewsSlice = createSlice({
         })
         .addCase(fetchCateredNews.fulfilled, (state, action) => {
             state.loading = 'succeeded';
-            state.news = action.payload;
+            state.news = { ...state.news, ...action.payload};
         })
         .addCase(fetchCateredNews.rejected, (state, action) => {
             state.loading = 'failed';

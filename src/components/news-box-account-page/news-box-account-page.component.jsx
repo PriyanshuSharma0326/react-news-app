@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import './news-box.style.scss';
+import './news-box-account-page.style.scss';
 import { formatDate } from '../../lib/utils/utils';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { UserContext } from '../../context/user-context';
 import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
 
-function NewsBox({ item }) {
+function NewsBoxAccountPage({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
 
     const handleAddArticleToBookmarks = async () => {
@@ -24,7 +24,7 @@ function NewsBox({ item }) {
     } 
 
     return (
-        <div className='news-box'>
+        <div className='news-box-account-page'>
             <a href={item.url} target='_blank' rel='noreferrer'>
                 <img src={item.urlToImage} alt="" />
             </a>
@@ -32,15 +32,11 @@ function NewsBox({ item }) {
                 <a href={item.url} target='_blank' rel='noreferrer'>
                     {item.title}
                 </a>
-
-                <h2>{item.description}</h2>
-                <p>{item.content?.split('[')[0]}</p>
                 
                 <div className="news-meta">
                     <ul>
                         {item.author && <li className='author'>Curated By: <span>{item.author}</span></li>}
-                        <li><span>{item.source.name}</span></li>
-                        <li>Last Updated: <span className='date'>{formatDate(item.publishedAt)}</span></li>
+                        <li className='last-update'>Last Updated: <span className='date'>{formatDate(item.publishedAt)}</span></li>
                         <li>
                             <a href={item.url} target='_blank' rel='noreferrer'>
                                 Read More
@@ -77,4 +73,4 @@ function NewsBox({ item }) {
     )
 }
 
-export default NewsBox;
+export default NewsBoxAccountPage;
