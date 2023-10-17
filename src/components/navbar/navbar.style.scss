@@ -90,6 +90,10 @@
                 color: var(--red);
                 border-bottom: 3px solid var(--red);
             }
+
+            &:first-of-type {
+                display: none;
+            }
         }
     }
 
@@ -193,6 +197,10 @@
             .topic {
                 padding: 0.25rem;
                 font-size: 0.75rem;
+
+                &:first-of-type {
+                    display: flex;
+                }
             }
         }
     }

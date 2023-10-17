@@ -18,6 +18,10 @@ function Navbar() {
         navigate('/news');
     }
 
+    const goToBookmarks = () => {
+        navigate('/account/bookmarks');
+    }
+
     const goToCategoryPage = (searchString) => {
         navigate(`/news/${searchString}`);
     }
@@ -26,7 +30,9 @@ function Navbar() {
         const topicsBar = document.getElementById('topics-bar');
 
         currentUser && topicsBar.childNodes.forEach((node, index) => {
-            dispatch(fetchCateredNews(node.innerText));
+            if(index > 0) {
+                dispatch(fetchCateredNews(node.innerText));
+            }
         });
     }, [dispatch, currentUser]);
 
@@ -64,6 +70,7 @@ function Navbar() {
             </nav>
 
             {currentUser && <div className="topics-bar" id='topics-bar'>
+                <span className={`topic${location.pathname === '/account/bookmarks' ? ' active' : ''}`} onClick={goToBookmarks}>Bookmarks</span>
                 <span className={`topic${location.pathname === '/news' ? ' active' : ''}`} onClick={goToNewsPage}>General</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Business' ? ' active' : ''}`} onClick={() => goToCategoryPage('Business')}>Business</span>
                 <span className={`topic${location.pathname.split('/news/')[1] === 'Entertainment' ? ' active' : ''}`} onClick={() => goToCategoryPage('Entertainment')}>Entertainment</span>

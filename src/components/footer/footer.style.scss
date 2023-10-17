@@ -1,0 +1,123 @@
+.footer {
+    padding: 3rem 0 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--dark);
+    color: var(--white);
+
+    .social-links-container {
+        display: flex;
+        gap: 0.25rem;
+
+        .social-link {
+            width: 2.8rem;
+            height: 2.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+            background-color: #444;
+        
+            transition: all 0.25s ease-in-out;
+
+            .fa-social {
+                font-size: 1.4rem;
+                color: var(--white);
+            
+                transition: all 0.25s ease-in-out;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                cursor: pointer;
+            }
+        }
+
+        .fa-facebook {
+            &:hover {
+                background-color: var(--facebook);
+            }
+        }
+
+        .fa-twitter {
+            &:hover {
+                background-color: var(--twitter);
+            }
+        }
+
+        .fa-instagram {
+            &:hover {
+                background-color: var(--instagram);
+            }
+        }
+
+        .fa-github {
+            &:hover {
+                background-color: var(--github);
+            }
+        }
+
+        .fa-linkedin {
+            &:hover {
+                background-color: var(--linkedin);
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        padding: 2rem 0 4rem 0;
+
+        .social-links-container {
+            .social-link {
+                width: 2.6rem;
+                height: 2.6rem;
+
+                .fa-social {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        .footer-credits {
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .social-links-container {
+            .social-link {
+                width: 2.5rem;
+                height: 2.5rem;
+
+                .fa-social {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        .footer-credits {
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 426px) {
+        padding: 2rem 0 3.5rem 0;
+
+        .social-links-container {
+            .social-link {
+                width: 2.25rem;
+                height: 2.25rem;
+
+                .fa-social {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+        .footer-credits {
+            font-size: 0.9rem;
+        }
+    }
+}

@@ -11,6 +11,7 @@ import Auth from './routes/auth/authentication.route';
 import SignIn from './pages/signin/signin';
 import SignUp from './pages/signup/signup';
 import Account from './routes/account/account.route';
+import Footer from './components/footer/footer.component';
 
 function App() {
     const dispatch = useDispatch();
@@ -49,6 +50,8 @@ function App() {
                 <Route path='news/*' element={
                     <ProtectedRouteNoLogin>
                         <NewsAndTopics />
+
+                        <Footer />
                     </ProtectedRouteNoLogin>
                 } />
 

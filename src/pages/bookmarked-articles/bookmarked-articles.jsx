@@ -10,14 +10,20 @@ function BookmarkedArticles() {
         <div className='bookmarked-articles-page-container'>
             <div className="bookmarked-articles-container">
                 <h1 className='title'>Saved Articles</h1>
-                {userBookmarks.map((item, index) => {
-                    return (
-                        <NewsBox 
-                            key={index} 
-                            item={item} 
-                        />
-                    )
-                })}
+                {
+                    userBookmarks.length ? 
+                    userBookmarks.map((item, index) => {
+                        return (
+                            <NewsBox 
+                                key={index} 
+                                item={item} 
+                            />
+                        )
+                    }) : 
+                    <div className='no-bookmarks'>
+                        <h1>No Bookmarks yet!</h1>
+                    </div>
+                }
             </div>
         </div>
     )

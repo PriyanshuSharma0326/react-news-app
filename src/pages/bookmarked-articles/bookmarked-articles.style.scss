@@ -13,6 +13,17 @@
         .title {
             font-size: 2.25rem;
         }
+
+        .no-bookmarks {
+            width: 100%;
+            padding: 1rem;
+
+            h1 {
+                text-align: center;
+                color: var(--grey-3);
+                font-size: 1.5rem;
+            }
+        }
     }
 
     @media (max-width: 1024px) {
