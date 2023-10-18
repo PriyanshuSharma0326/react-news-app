@@ -5,9 +5,12 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { UserContext } from '../../context/user-context';
 import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
+import { useNavigate } from 'react-router-dom';
 
 function NewsBox({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
@@ -27,17 +30,20 @@ function NewsBox({ item }) {
             },
             currentUser?.uid
         )
-    } 
+    }
+
+    const goToArticlePage = () => {
+        navigate(`/article/${item.title}`);
+    }
 
     return (
         <div className='news-box'>
-            <a href={item.url} target='_blank' rel='noreferrer'>
+            <div className='image-container'>
                 <img src={item.urlToImage} alt="" />
-            </a>
+            </div>
+
             <div className="news-content">
-                <a href={item.url} target='_blank' rel='noreferrer'>
-                    {item.title}
-                </a>
+                <h1>{item.title}</h1>
 
                 <h2>{item.description}</h2>
                 {item.content && <p>{item.content?.split('[')[0]}</p>}
@@ -47,11 +53,7 @@ function NewsBox({ item }) {
                         {item.author && <li className='author'>Curated By: <span>{item.author}</span></li>}
                         <li><span>{item.source.name}</span></li>
                         <li>Last Updated: <span className='date'>{formatDate(item.publishedAt)}</span></li>
-                        <li>
-                            <a href={item.url} target='_blank' rel='noreferrer'>
-                                Read More
-                            </a>
-                        </li>
+                        <li onClick={goToArticlePage}>Read More</li>
                     </ul>
 
                     <div className="bookmark-container">

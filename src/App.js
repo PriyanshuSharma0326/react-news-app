@@ -55,6 +55,8 @@ function App() {
                     </ProtectedRouteNoLogin>
                 } />
 
+                <Route path='article/*' element={<></>} />
+
                 <Route path='accounts' element={
                     <ProtectedRouteOnLogin>
                         <Auth />
