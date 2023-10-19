@@ -12,6 +12,7 @@ import SignIn from './pages/signin/signin';
 import SignUp from './pages/signup/signup';
 import Account from './routes/account/account.route';
 import Footer from './components/footer/footer.component';
+import ArticleRoute from './routes/article/article.route';
 
 function App() {
     const dispatch = useDispatch();
@@ -44,6 +45,8 @@ function App() {
                 <Route index element={
                     <ProtectedRouteNoLogin>
                         <Root />
+
+                        <Footer />
                     </ProtectedRouteNoLogin>
                 } />
 
@@ -55,7 +58,13 @@ function App() {
                     </ProtectedRouteNoLogin>
                 } />
 
-                <Route path='article/*' element={<></>} />
+                <Route path='article/*' element={
+                    <>
+                        <ArticleRoute />
+
+                        <Footer />
+                    </>
+                } />
 
                 <Route path='accounts' element={
                     <ProtectedRouteOnLogin>

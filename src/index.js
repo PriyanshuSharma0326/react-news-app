@@ -6,6 +6,7 @@ import './style/index.scss';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { UserContextProvider } from './context/user-context';
+import { CompiledNewsContextProvider } from './context/compiled-news.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,9 +14,11 @@ root.render(
     <React.StrictMode>
         <UserContextProvider>
             <Provider store={ store }>
-                <Router>
-                    <App />
-                </Router>
+                <CompiledNewsContextProvider>
+                    <Router>
+                        <App />
+                    </Router>
+                </CompiledNewsContextProvider>
             </Provider>
         </UserContextProvider>
     </React.StrictMode>
