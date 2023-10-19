@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './news-box-account-page.style.scss';
 import { formatDate } from '../../lib/utils/utils';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
@@ -8,6 +8,8 @@ import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/uti
 
 function NewsBoxAccountPage({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
+
+    const [imageError, setImageError] = useState(false);
 
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
@@ -32,7 +34,18 @@ function NewsBoxAccountPage({ item }) {
     return (
         <div className='news-box-account-page'>
             <a href={item.url} target='_blank' rel='noreferrer'>
-                <img src={item.urlToImage} alt="" />
+                {
+                    !imageError ? 
+                    <img 
+                        src={item?.urlToImage} 
+                        alt="" 
+                        onError={() => setImageError(true)}  
+                    /> : 
+                    <img 
+                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
+                        alt="" 
+                    />
+                }
             </a>
             <div className="news-content">
                 <a href={item.url} target='_blank' rel='noreferrer'>

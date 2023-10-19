@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './news-box.style.scss';
 import { formatDate } from '../../lib/utils/utils';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 function NewsBox({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
+
+    const [imageError, setImageError] = useState(false);
 
     const navigate = useNavigate();
 
@@ -33,13 +35,25 @@ function NewsBox({ item }) {
     }
 
     const goToArticlePage = () => {
-        navigate(`/article/${item.title}`);
+        const title = item.title.split('?').join('').split('%').join('');
+        navigate(`/article/${title}`);
     }
 
     return (
         <div className='news-box'>
             <div className='image-container'>
-                <img src={item.urlToImage} alt="" />
+                {
+                    !imageError ? 
+                    <img 
+                        src={item?.urlToImage} 
+                        alt="" 
+                        onError={() => setImageError(true)}  
+                    /> : 
+                    <img 
+                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
+                        alt="" 
+                    />
+                }
             </div>
 
             <div className="news-content">

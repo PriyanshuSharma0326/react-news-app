@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './article.style.scss';
 import { useParams } from 'react-router-dom';
 import { CompiledNewsContext } from '../../context/compiled-news.context';
@@ -8,11 +8,13 @@ import { formatDate } from '../../lib/utils/utils';
 function Article() {
     const param = useParams();
 
+    const [imageError, setImageError] = useState(false);
+
     const { compiledNews } = useContext(CompiledNewsContext);
 
     const { userBookmarks } = useContext(UserContext);
 
-    const thisNews = compiledNews.find(item => item.title.trim() === param['*']);
+    const thisNews = compiledNews.find(item => item.title.trim().split('?').join('').split('%').join('') === param['*']);
 
     return (
         <div className='article-page-container'>
@@ -39,7 +41,18 @@ function Article() {
             </div>
 
             <div className="article-image-container">
-                <img src={thisNews?.urlToImage} alt="" />
+                {
+                    !imageError ? 
+                    <img 
+                        src={thisNews?.urlToImage} 
+                        alt="" 
+                        onError={() => setImageError(true)}  
+                    /> : 
+                    <img 
+                        src="https://resource.rentcafe.com/image/upload/q_auto,f_auto,c_limit,w_576/s3/2/50552/image%20not%20available(34).jpg" 
+                        alt="" 
+                    />
+                }
             </div>
 
             <h2 className='article-description'>{thisNews?.description}</h2>
