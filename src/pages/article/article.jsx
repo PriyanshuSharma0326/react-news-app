@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import { CompiledNewsContext } from '../../context/compiled-news.context';
 import { UserContext } from '../../context/user-context';
 import { formatDate } from '../../lib/utils/utils';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
 
 function Article() {
     const param = useParams();
@@ -12,22 +15,58 @@ function Article() {
 
     const { compiledNews } = useContext(CompiledNewsContext);
 
-    const { userBookmarks } = useContext(UserContext);
+    const { currentUser, userBookmarks } = useContext(UserContext);
 
     const thisNews = compiledNews.find(item => item.title.trim().split('?').join('').split('%').join('') === param['*']);
 
+    const handleAddArticleToBookmarks = async () => {
+        await addArticleToBookmarks(
+            {
+                ...thisNews,
+                ...(thisNews.content ? { content: thisNews.content.split('[')[0] } : {})
+            },
+            currentUser?.uid
+        );
+    }
+
+    const handleRemoveArticleFromBookmarks = async () => {
+        await removeArticleFromBookmarks(
+            {
+                ...thisNews,
+                ...(thisNews.content ? { content: thisNews.content.split('[')[0] } : {})
+            },
+            currentUser?.uid
+        )
+    }
+
     return (
         <div className='article-page-container'>
-            <h1 className='article-title'>{thisNews?.title}</h1>
+            <div className="article-header">
+                <div className="article-info">
+                    <h1 className='article-title'>{thisNews?.title}</h1>
 
-            <div className="article-meta">
-                <ul>
-                    {thisNews?.author && <li className='author'>Curated By: <span>{thisNews?.author}</span></li>}
-                    <li><span>{thisNews?.source.name}</span></li>
-                    <li>Last Updated: <span className='date'>{formatDate(thisNews?.publishedAt)}</span></li>
-                </ul>
+                    <div className="article-meta">
+                        <ul>
+                            {thisNews?.author && <li className='author'>Curated By: <span>{thisNews?.author}</span></li>}
+                            <li><span>{thisNews?.source.name}</span></li>
+                            <li>Last Updated: <span className='date'>{formatDate(thisNews?.publishedAt)}</span></li>
+                        </ul>
 
-                {/* <div className="bookmark-container">
+                        <div className="bookmark-container">
+                            {userBookmarks.some(obj => obj.title === thisNews.title) ? 
+                                <BookmarkIcon 
+                                    className='marked'
+                                    onClick={handleRemoveArticleFromBookmarks} 
+                                /> : 
+                                <BookmarkBorderOutlinedIcon 
+                                    onClick={handleAddArticleToBookmarks} 
+                                />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bookmark-container">
                     {userBookmarks.some(obj => obj.title === thisNews.title) ? 
                         <BookmarkIcon 
                             className='marked'
@@ -37,7 +76,7 @@ function Article() {
                             onClick={handleAddArticleToBookmarks} 
                         />
                     }
-                </div> */}
+                </div>
             </div>
 
             <div className="article-image-container">

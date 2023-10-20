@@ -60,7 +60,6 @@ function NewsBox({ item }) {
                 <h1>{item.title}</h1>
 
                 <h2>{item.description}</h2>
-                {item.content && <p>{item.content?.split('[')[0]}</p>}
                 
                 <div className="news-meta">
                     <ul>

@@ -21,6 +21,7 @@ import {
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 import { v4 as uuidv4 } from 'uuid';
+import toast from "react-hot-toast";
 
 // Method to Create User Doc to collections
 const createUserDoc = async (user, formData, imageURL) => {
@@ -209,9 +210,10 @@ const addArticleToBookmarks = async (item, userID) => {
         await updateDoc(userCartDocRef, {
             bookmarks: arrayUnion({...item})
         })
+        toast.success('Article added to Bookmarks');
     }
     catch (err) {
-        console.log(err);
+        toast.error('Error adding article to Bookmarks');
     }
 }
 
@@ -222,9 +224,10 @@ const removeArticleFromBookmarks = async (item, userID) => {
         await updateDoc(userCartDocRef, {
             bookmarks: arrayRemove({...item})
         })
+        toast.error('Article removed from Bookmarks');
     }
     catch (err) {
-        console.log(err);
+        toast.error('Error removing article from Bookmarks');
     }
 }
 

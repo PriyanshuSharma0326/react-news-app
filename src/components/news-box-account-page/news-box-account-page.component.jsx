@@ -5,11 +5,14 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { UserContext } from '../../context/user-context';
 import { addArticleToBookmarks, removeArticleFromBookmarks } from '../../lib/utils/firebase.utils';
+import { useNavigate } from 'react-router-dom';
 
 function NewsBoxAccountPage({ item }) {
     const { currentUser, userBookmarks } = useContext(UserContext);
 
     const [imageError, setImageError] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleAddArticleToBookmarks = async () => {
         await addArticleToBookmarks(
@@ -29,11 +32,16 @@ function NewsBoxAccountPage({ item }) {
             },
             currentUser?.uid
         )
-    } 
+    }
+
+    const goToArticlePage = () => {
+        const title = item.title.split('?').join('').split('%').join('');
+        navigate(`/article/${title}`);
+    }
 
     return (
         <div className='news-box-account-page'>
-            <a href={item.url} target='_blank' rel='noreferrer'>
+            <div className='image-container'>
                 {
                     !imageError ? 
                     <img 
@@ -46,21 +54,16 @@ function NewsBoxAccountPage({ item }) {
                         alt="" 
                     />
                 }
-            </a>
+            </div>
+
             <div className="news-content">
-                <a href={item.url} target='_blank' rel='noreferrer'>
-                    {item.title}
-                </a>
+                <h1>{item.title}</h1>
                 
                 <div className="news-meta">
                     <ul>
                         {item.author && <li className='author'>Curated By: <span>{item.author}</span></li>}
                         <li className='last-update'>Last Updated: <span className='date'>{formatDate(item.publishedAt)}</span></li>
-                        <li>
-                            <a href={item.url} target='_blank' rel='noreferrer'>
-                                Read More
-                            </a>
-                        </li>
+                        <li onClick={goToArticlePage}>Read More</li>
                     </ul>
 
                     <div className="bookmark-container">

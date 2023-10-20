@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { UserContextProvider } from './context/user-context';
 import { CompiledNewsContextProvider } from './context/compiled-news.context';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,6 +18,8 @@ root.render(
                 <CompiledNewsContextProvider>
                     <Router>
                         <App />
+
+                        <Toaster position='top-center' />
                     </Router>
                 </CompiledNewsContextProvider>
             </Provider>
