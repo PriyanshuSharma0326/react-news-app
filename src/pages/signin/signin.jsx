@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { validateEmail } from '../../lib/utils/utils';
 import FormInput from '../../components/form-input/form-input.component';
 import Button from '../../components/button/button.component';
+import toast from 'react-hot-toast';
 
 function SignIn() {
     const navigate = useNavigate();
@@ -56,6 +57,7 @@ function SignIn() {
         if(Object.keys(validationErrors).length === 0) {
             try {
                 await signInUserEmailPasswordMethod(formInputs.email, formInputs.password);
+                toast.success('Sign in successful!');
             }
             catch(err) {
                 if(err.code === 'auth/user-not-found') {
@@ -81,8 +83,9 @@ function SignIn() {
     const googleSignInHandler = async () => {
         const { user } = await googlePopupSignIn()
         .catch((error) => {
-            alert(error.message);
+            toast.error('Error signing in!');
         });
+        toast.success('Sign in successful!');
 
         await createGoogleUserDoc(user);
     }

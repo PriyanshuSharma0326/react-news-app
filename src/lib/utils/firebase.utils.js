@@ -149,7 +149,10 @@ const signInUserEmailPasswordMethod = async (email, password) => {
 }
 
 // Method to Sign User Out
-const signOutUser = () => signOut(auth);
+const signOutUser = () => {
+    signOut(auth);
+    toast.success('Sign out successful!');
+}
 
 // Method to Listen to Auth State Changes
 const authStateChangeListener = (callback) => {

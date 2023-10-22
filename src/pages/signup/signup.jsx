@@ -8,6 +8,7 @@ import { PulseLoader } from 'react-spinners';
 import { UserContext } from '../../context/user-context';
 import FormInput from '../../components/form-input/form-input.component';
 import Button from '../../components/button/button.component';
+import toast from 'react-hot-toast';
 
 function SignUp() {
     const navigate = useNavigate();
@@ -115,7 +116,9 @@ function SignUp() {
 
             try {
                 const { user } = await createUserEmailPasswordMethod(formInputs.email, formInputs.password);
-                await addImageToStorage(image, formInputs, user);
+                await addImageToStorage(image, formInputs, user).then(() => {
+                    toast.success('Signed in successfully!');
+                })
             }
             catch(err) {
                 if(err.code === 'auth/email-already-in-use') {
