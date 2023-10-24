@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# ReactReporter - A News Aggregator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![ReactReporter Screenshot](/public/assets/desktop-siteshot.png)
 
-## Available Scripts
+Welcome to ReactReporter, a news aggregator app. This news application is built with React and the news data on this app is fetched from [newsapi.org](https://newsapi.org/).
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [About](#about)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Setup](#setup)
+- [Contact](#contact)
+- [Social](#social)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ReactReporter helps you find curated news article fetched from [newsapi.org](https://newsapi.org/) and bookmark the articles to read them at your convenience.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Categories**: Discover a range of news articles on different topics, from health & sports to entertainment.
 
-### `npm run build`
+- **Redux**: This project efficiently utilizes @reduxjs/toolkit and react-redux for state management and fetch api data using axios.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Context API**: This project efficiently utilizes context api for state management of authentication states and news articles.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **User-Friendly Navigation**: Easily navigate through the app with ease.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **News Page**: Browse a curated news articles from different categories at `/news`.
 
-### `npm run eject`
+- **User Authentication**: Securely log in or register for an account.
+  - **Login Page**: Log in with your email and password.
+  - **Registration**: Create a new account with email and password.
+  - **Switch Between Login and Register**: Conveniently switch between login and registration from the same page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Bookmark Functionality**: Add articles to your bookmarks, view them on the `/account/bookmarks` route. This page displays saved articles.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The project is structured as follows:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `/public`: Contains static assets, including images.
+- `/src`: Contains the React application source code.
+  - `/app`: Store for redux.
+  - `/components`: React components for various parts of the app.
+  - `/features`: Reducers for the redux provider.
+  - `/context`: For state management within the app.
+  - `/lib`: Firebase configuration and initialization and utility functions.
+  - `/pages`: Pages for the app.
+  - `/routes`: Routes for the app.
+  - `/style`: CSS styles for the app.
+ 
+## Contact
 
-## Learn More
+Feel free to reach out to me with any inquiries, opportunities, or collaborations. You can contact me at:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Email: [priyanshusharma0326@gmail.com](mailto:priyanshusharma0326@gmail.com)
+- LinkedIn: [Priyanshu Sharma](https://www.linkedin.com/in/priyanshusharma0326)
+- Portfolio: [portfolio-xtechilad.vercel.app](https://portfolio-xtechilad.vercel.app/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Social
 
-### Code Splitting
+Connect with me on social media:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Twitter: [@xtechilad](https://twitter.com/xtechilad)
+- Instagram: [@xtechilad](https://www.instagram.com/xtechilad)
+- GitHub: [@priyanshusharma0326](https://github.com/priyanshusharma0326)
 
-### Analyzing the Bundle Size
+Let's engage, share ideas, and stay connected!
+  
+## Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To run this application locally, follow these steps:
 
-### Making a Progressive Web App
+1. Clone the repository: `git clone https://github.com/PriyanshuSharma0326/react-news-app.git`
+2. Navigate to the project directory: `cd react-news-app`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Usage
 
-### Advanced Configuration
+Once the development server is up and running, open your web browser and go to `http://localhost:3000` to see the project in action.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for visiting my project!
